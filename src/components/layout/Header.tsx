@@ -8,15 +8,9 @@ export const Header = () => {
           Movies app
         </Link>
         <nav>
-          <ul className="items-cente flex gap-6">
+          <ul>
             <li>
               <Link to="/" className="text-lg font-medium text-white">
-                Home
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/movies" className="text-lg font-medium text-white">
                 Movies
               </Link>
             </li>
