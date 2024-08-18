@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/movies",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",
