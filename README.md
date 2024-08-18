@@ -2,7 +2,7 @@
 
 This application displays a grid showing a list of movies and their details.
 
-### Preview : https://rent-listings.vercel.app/
+### Preview : https://movie-app-test-kappa.vercel.app/movies/
 
 ## Setup Instructions
 
