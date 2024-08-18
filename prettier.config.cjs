@@ -4,4 +4,5 @@ module.exports = {
   tabWidth: 2,
   trailingComma: 'all',
   endOfLine: 'lf',
+  tailwindFunctions: ['twMerge', 'twJoin'],
 };

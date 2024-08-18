@@ -2,6 +2,7 @@ import { ChevronLeftIcon } from '@heroicons/react/16/solid';
 import { useNavigate } from 'react-router-dom';
 
 export const BackButton = () => {
+  // navigate backward
   const navigate = useNavigate();
   return (
     <button

@@ -8,6 +8,8 @@ type GetMovieQueryParams = {
 };
 type MovieId = { i: string };
 
+// Function to fetch movies based on search params
+
 export const getMovies = async (
   params: GetMovieQueryParams,
 ): Promise<MovieApiResponse | undefined> => {
@@ -28,6 +30,7 @@ export const getMovies = async (
   }
 };
 
+// Function to fetch movie details based on the movieId
 export const getMovie = async (
   params: MovieId,
 ): Promise<MovieDetail | undefined> => {

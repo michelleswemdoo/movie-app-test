@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Movie } from '../../types';
+
+// Movie item definition
 export const MovieItem = ({ imdbID, Title, Poster, Year }: Movie) => {
   return (
     <div className="cursor-pointer rounded-lg bg-white text-slate-950 shadow-md">
@@ -8,7 +10,7 @@ export const MovieItem = ({ imdbID, Title, Poster, Year }: Movie) => {
         className="block h-full"
         aria-label={`Details for ${Title}
         `}
-        to={`/${encodeURIComponent(imdbID)}`}
+        to={`/movies/${encodeURIComponent(imdbID)}`}
       >
         <div className="relative h-[200px] w-full">
           <img

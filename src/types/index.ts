@@ -1,3 +1,5 @@
+// Types Definition
+
 export type Movie = {
   Title: string;
   Year: string;
@@ -20,4 +22,5 @@ export type MovieDetail = {
   Plot: string;
   Language: string;
   Poster: string;
+  Error?: string;
 };

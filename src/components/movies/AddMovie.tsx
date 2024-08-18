@@ -4,19 +4,25 @@ import { useForm } from 'react-hook-form';
 import { defaultValues, movieSchema } from '../../lib/movie-schema';
 import Modal from '../ui/Modal';
 
-type AddMovieProps = { isOpen: boolean; onClose: () => void };
+// infere MovieObj using zod
+export type MovieObj = z.infer<typeof movieSchema>;
 
-type FormData = z.infer<typeof movieSchema>;
+type AddMovieProps = {
+  isOpen: boolean;
+  onClose: () => void;
+  addMovie: (data: MovieObj) => void;
+};
 
-export const AddMovie = ({ isOpen, onClose }: AddMovieProps) => {
+export const AddMovie = ({ isOpen, onClose, addMovie }: AddMovieProps) => {
   const {
     handleSubmit,
     register,
     formState: { errors },
-  } = useForm<FormData>({ defaultValues, resolver: zodResolver(movieSchema) });
+  } = useForm<MovieObj>({ defaultValues, resolver: zodResolver(movieSchema) });
 
-  const onSubmit = async (data: FormData) => {
-    console.log(data);
+  // handle form submission
+  const onSubmit = async (data: MovieObj) => {
+    addMovie(data);
     onClose();
   };
   return (
@@ -42,16 +48,14 @@ export const AddMovie = ({ isOpen, onClose }: AddMovieProps) => {
         </div>
         <div className="mb-4">
           <input
-            aria-invalid={errors.description ? 'true' : 'false'}
-            {...register('description')}
+            aria-invalid={errors.year ? 'true' : 'false'}
+            {...register('year')}
             required
             type="text"
-            placeholder="Description"
-            className={`${errors.description ? 'border-[#DF4B2D] text-[#DF4B2D] focus:invalid:border-[#DF4B2D]' : ''} block w-full rounded border bg-transparent px-5 py-[14px] text-base font-medium text-slate-950 transition-all duration-200 ease-linear placeholder:text-slate-950/25 focus:border-purple-950 focus:text-slate-950 focus:outline-0`}
+            placeholder="Release year"
+            className={`${errors.year ? 'border-[#DF4B2D] text-[#DF4B2D] focus:invalid:border-[#DF4B2D]' : ''} block w-full rounded border bg-transparent px-5 py-[14px] text-base font-medium text-slate-950 transition-all duration-200 ease-linear placeholder:text-slate-950/25 focus:border-purple-950 focus:text-slate-950 focus:outline-0`}
           />
-          {errors?.description && (
-            <span>{errors.description.message as string}</span>
-          )}
+          {errors?.year && <span>{errors.year.message as string}</span>}
         </div>
         <div className="mb-12">
           <button

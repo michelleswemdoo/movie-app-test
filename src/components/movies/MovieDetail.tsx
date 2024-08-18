@@ -1,13 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { getMovie } from '../../lib/data-service';
-import { BackButton } from './BackButton';
 import { ErrorCard } from '../ui/ErrorCard';
 import { Loader } from '../ui/Loader';
+import { NotFound } from '../ui/NotFound';
 
 export const MovieDetail = () => {
+  // extract movieId from useParams
   const { movieId } = useParams();
 
+  // fetch movie details
   const { isPending, isError, error, data } = useQuery({
     queryKey: ['movie', movieId],
     queryFn: () => getMovie({ i: movieId as string }),
@@ -21,14 +23,15 @@ export const MovieDetail = () => {
     return <ErrorCard message={error.message || 'Failed to fetch movies'} />;
   }
 
+  if (data && data?.Error) {
+    return <NotFound />;
+  }
+
   return (
     <>
-      <div className="flex items-center gap-4">
-        <BackButton />
-        <h1 className="text-sm font-medium text-slate-950 sm:text-xl">
-          {data?.Title}
-        </h1>
-      </div>
+      <h1 className="text-sm font-medium text-slate-950 sm:text-xl">
+        {data?.Title}
+      </h1>
       <div className="mt-8 w-full text-slate-950 sm:w-4/5">
         <div className="relative h-[420px] overflow-hidden rounded-lg">
           <img
