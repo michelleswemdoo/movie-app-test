@@ -59,7 +59,9 @@ export const Movies = () => {
       Poster: 'N/A',
     };
     //  update state based on the prev values and send it to a backend
-    //  or update local state
+    //  or update local state for now will just console.log data
+    // Storing this data in useState would create redundant state,
+    // leading to unnecessary complexity and potential inconsistencies.
     console.log(newMovieObj);
   };
 
